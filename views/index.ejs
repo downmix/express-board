@@ -7,6 +7,7 @@
   <title>Document</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="./static/style.css">
+  <script src="./static/app.js" defer></script>
 </head>
 <body>
   <div class="container-fluid">
@@ -45,14 +46,14 @@
       <div class="row comment">
         <div class="col-xs-10 commentWrite">
           <div class="col-xs-4" style="padding: 0;">
-            <input class="form-control" type="text" placeholder="이름">
+            <input class="form-control dataCmtWriter" type="text" data-board-id="<%= boardItem.id %>" placeholder="이름">
           </div>
           <div>
-            <textarea class="form-control" rows="3" placeholder="코멘트 내용"></textarea>      
+            <textarea class="form-control dataCmtContent" rows="3" data-board-id="<%= boardItem.id %>" placeholder="코멘트 내용"></textarea>      
           </div>
         </div>
         <div class="col-xs-2 commentWriteBtn">
-          <input type="button" class="btn btn-primary" value="덧글 등록"> 
+          <input type="button" class="btn btn-primary" name="commentBtn" data-board-id="<%= boardItem.id %>" value="덧글 등록"> 
         </div>
       </div>
       <!-- 덧글 쓰기 End -->

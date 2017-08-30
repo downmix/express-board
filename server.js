@@ -1,3 +1,5 @@
+/*------------------------------------*/
+/* [ 기반 구축 ] */
 const express = require('express');
 const morgan = require('morgan');
 const basicAuth = require('express-basic-auth');
@@ -6,6 +8,19 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const authMiddleware = basicAuth({
+  users: { 'admin': '1q2w3e' },
+  challenge: true,
+  realm: 'Imb4T3st4pp'
+});
+const bodyParserMiddleware = bodyParser.urlencoded({ extended: false });
+
+app.set('view engine', 'ejs');
+app.use('/static', express.static('public'));
+app.use(morgan('tiny'));
+
+/*------------------------------------*/
+/* [ data ] */
 const boardData = [
   {
     id: 1, 
@@ -29,24 +44,26 @@ const commentData = [
   
 ];
 
-const authMiddleware = basicAuth({
-  users: { 'admin': '1q2w3e' },
-  challenge: true,
-  realm: 'Imb4T3st4pp'
-});
-const bodyParserMiddleware = bodyParser.urlencoded({ extended: false });
-
-app.set('view engine', 'ejs');
-app.use('/static', express.static('public'));
-app.use(morgan('tiny'));
-
+/*------------------------------------*/
+/* [ 라우팅 ] */
 app.get('/', (req, res) => {
   const boardList = boardData.sort(function(a, b){return b.id-a.id});
   const commentList = commentData.sort(function(a, b){return a.id-b.id});
-  console.log('[  boardList ] >>',  boardList );
+  //console.log('[  boardList ] >>',  boardList );
   res.render('index.ejs', {boardList, commentList});
 });
 
+app.post('/cmt', bodyParserMiddleware, (req, res) => {
+  const content = req.body.content;
+  console.log(new Date(), ' << [ new Date() ]');
+  console.log(commentData.length, ' << [ commentData.length ]');
+
+  
+
+});
+
+/*------------------------------------*/
+/* [ Server ] */
 app.listen(3000, () => {
   console.log('[ listening... ]');
 });
