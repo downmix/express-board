@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="./static/style.css">
+</head>
+<body>
+  
+  <div class="container-fluid">
+    글작성
+    <!-- 작성영역 Start -->
+    <div class="boardWrite">
+      <div class="col-xs-4" style="padding: 0;">
+        <input class="form-control" type="text" placeholder="이름">
+      </div>
+      <div>
+        <textarea class="form-control" rows="3" placeholder="코멘트 내용"></textarea>      
+      </div>
+    </div>
+    <hr class="writeHr">
+    <!-- 작성영역 End -->
+
+    <!-- 글 리스트 Start -->
+    <div class="boardList">
+      <!-- 게시글 Start -->
+      <div class="boardContent">
+        <h2>제목 - <small>  작성자 명</small></h2>
+        <p class="bg-info boardBody">글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용</p>
+      </div>
+      <!-- 게시글 End -->
+
+      <!-- 코멘트 Start -->
+      <div class="commentList">
+        <div class="commentContent">
+          <blockquote>
+            <p class="commentBody">덧ㄷ글덧ㄷ글덧ㄷ글덧ㄷ글덧ㄷ글</p>
+            <footer><cite title="Source Title">작성자 명</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+      <!-- 코멘트 End -->
+      <hr>
+    </div>
+    <!-- 글 리스트 End -->
+  </div>
+</body>
+</html>

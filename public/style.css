@@ -1,0 +1,30 @@
+body{
+
+}
+
+.boardBody{
+  padding: 15px;
+  font-size: 18px;
+}
+
+.commentBody{
+  font-size: 16px;
+}
+
+.writeHr{
+  border-top: 1px solid #bbb;
+}
+
+.btnBoardWrite{
+  text-align: right;
+  margin-top: 20px;
+}
+
+.comment{
+  height: 110px;
+}
+.commentWriteBtn > input{
+  width: 100%;
+  margin-top: 34px;
+  height: 74px;
+}
