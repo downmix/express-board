@@ -57,10 +57,14 @@ app.get('/', (req, res) => {
   res.render('index.ejs', {boardList, commentList});
 });
 
+/*------------------------------------*/
+/* [ 글 작성 페이지 ] */
 app.get('/write', (req, res) => {
   res.render('write.ejs');
 });
 
+/*------------------------------------*/
+/* [ 글 작성 POST ] */
 app.post('/write', bodyParserMiddleware, (req, res) => {
   console.log(req.body, '<< [ req.body ]');
 
@@ -78,6 +82,8 @@ app.post('/write', bodyParserMiddleware, (req, res) => {
   res.redirect('/');
 });
 
+/*------------------------------------*/
+/* [ 글 삭제 ] */
 app.post('/boardDelete', bodyParserMiddleware, authMiddleware, (req, res) => {
 
   const boardId = req.body.boardId;
@@ -91,6 +97,8 @@ app.post('/boardDelete', bodyParserMiddleware, authMiddleware, (req, res) => {
   res.redirect('/admin');
 });
 
+/*------------------------------------*/
+/* [ 게시글 열람 ] */
 app.get('/read/:id', (req, res) => {
   const boardItem = boardData.find(val => val.id == req.params.id);
   const commentListFind = commentData.filter(val => val.boardId == req.params.id);
@@ -98,6 +106,8 @@ app.get('/read/:id', (req, res) => {
   boardItem ? res.render('read.ejs', {boardItem, commentListFind}) : res.redirect('/');
 });
 
+/*------------------------------------*/
+/* [ 코멘트 작성 ] */
 app.post('/comment', bodyParserMiddleware, (req, res) => {
   const content = req.body.content;
   
@@ -115,7 +125,8 @@ app.post('/comment', bodyParserMiddleware, (req, res) => {
   res.redirect('/read/'+req.body.boardId);
 });
 
-
+/*------------------------------------*/
+/* [ 관리자 페이지 ] */
 app.get('/admin', authMiddleware, (req, res) => {
   const boardList = boardData.sort(function(a, b){return b.id-a.id});
   const commentList = commentData.sort(function(a, b){return a.id-b.id});
