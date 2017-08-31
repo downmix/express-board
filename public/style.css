@@ -5,6 +5,7 @@ body{
 .boardBody{
   padding: 15px;
   font-size: 18px;
+  min-height: 200px;
 }
 
 .commentBody{
@@ -27,4 +28,37 @@ body{
   width: 100%;
   margin-top: 34px;
   height: 74px;
+}
+
+.list-num{
+  color: #767676;
+  text-align: center;
+  width: 90px;
+}
+
+.list-head{
+  font-weight: bold;
+}
+
+.list-write{
+  width: 120px;
+  font-weight: bold;
+  
+}
+
+#boardList > thead{
+  text-align: center;
+}
+
+.readNav{
+  text-align: right;
+}
+
+.dataCmtContent{
+  width: 100%;
+}
+
+.writeHead{
+  text-align: right;
+  line-height: 30px;
 }

@@ -1,10 +1,9 @@
 <%- include('header'); %>
   <div class="row">
     <div class="col-xs-6">
-      <h1>Board</h1>
+      <h1>Admin</h1>
     </div>
     <div class="col-xs-6 btnBoardWrite">
-      <a href="./write"><input type="button" class="btn btn-primary btn-lg" value="게시글 작성"></a>
     </div>
   </div>
   
@@ -15,16 +14,26 @@
       <td>제목</td>
       <td>작성자</td>
       <td>작성일</td>
+      <td>ROOT</td>
     </thead>
     <tbody>
       <% boardList.forEach( boardItem => { %>
       <% const wTime = new Date(boardItem.date)%>
+      
       <tr>
         <td class="list-num"><%= boardItem.id%></td>
-        <td><a href="./read/<%= boardItem.id%>"><%= boardItem.title%></a></td>
+        <td><a href="./read?id=<%= boardItem.id%>"><%= boardItem.title%></a></td>
         <td class="list-write"><%= boardItem.writer%></td>
         <td class="list-num"><%= wTime.getUTCFullYear() + '/' + (wTime.getUTCMonth()+1) + '/' + wTime.getUTCDate()%></td>
+        <td class="list-num">
+          <form action="/boardDelete" method="post" class="form-inline">
+            <input type="hidden" name="boardId" value="<%= boardItem.id%>">
+            <input type="submit" class="btn btn-danger btn-xs" data-id="<%= boardItem.id%>" name="boardDeleteBtn" value="DEL">
+          </form>
+        </td>
+        
       </tr>
+      
       <% }) %>
     </tbody>
   </table>

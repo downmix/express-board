@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="./static/style.css">
+  <script src="./static/app.js" defer></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-6">
+        <h1>Board</h1>
+      </div>
+      <div class="col-xs-6 btnBoardWrite">
+        <input type="button" class="btn btn-primary btn-lg" value="게시글 작성"> 
+      </div>
+    </div>
+    
+    <!-- 글 리스트 Start -->
+    <% boardList.forEach( boardItem => { %>
+    <div class="boardList">
+      <!-- 게시글 Start -->
+      <div class="boardContent">
+        <h2><%= boardItem.title%> - <small>  <%= boardItem.writer%></small></h2>
+        <p class="bg-info boardBody"><%= boardItem.content%></p>
+      </div>
+      <!-- 게시글 End -->
+
+      <!-- 코멘트 Start -->
+      <% const commentListFind = commentList.filter( commentItem => commentItem.boardId === boardItem.id) %>
+      <% commentListFind.forEach( cmtList => { %>
+      <div class="commentList">
+        <div class="commentContent">
+          <blockquote>
+            <p class="commentBody"><%= cmtList.content %></p>
+            <footer><cite title="Source Title"><%= cmtList.writer %></cite></footer>
+          </blockquote>
+        </div>
+      </div>
+      <% }) %>
+      <!-- 덧글 쓰기 Start -->
+      <div class="row comment">
+        <div class="col-xs-10 commentWrite">
+          <div class="col-xs-4" style="padding: 0;">
+            <input class="form-control dataCmtWriter" type="text" data-board-id="<%= boardItem.id %>" placeholder="이름">
+          </div>
+          <div>
+            <textarea class="form-control dataCmtContent" rows="3" data-board-id="<%= boardItem.id %>" placeholder="코멘트 내용"></textarea>      
+          </div>
+        </div>
+        <div class="col-xs-2 commentWriteBtn">
+          <input type="button" class="btn btn-primary" name="commentBtn" data-board-id="<%= boardItem.id %>" value="덧글 등록"> 
+        </div>
+      </div>
+      <!-- 덧글 쓰기 End -->
+      <hr class="writeHr">
+      <!-- 코멘트 End -->
+    <% }) %>
+    </div>
+    <!-- 글 리스트 End -->
+  </div>
+</body>
+</html>

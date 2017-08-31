@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <div class="container-fluid">
+<div class="readContent">
+  <!-- 게시글 Start -->
+  <div class="boardContent">
+    <h2><%= boardItem.title%> - <small>  <%= boardItem.writer%></small></h2>
+    <p class="bg-info boardBody"><%- boardItem.content.replace(/\r\n/g, '<br/>')%></p>
+  </div>
+  <!-- 게시글 End -->
+  <hr class="writeHr">
+  <!-- 코멘트 Start -->
+  <% commentListFind.forEach( cmtList => { %>
+  <div class="commentList">
+    <div class="commentContent">
+      <blockquote>
+        <p class="commentBody"><%= cmtList.content %></p>
+        <footer><cite title="Source Title"><%= cmtList.writer %></cite></footer>
+      </blockquote>
+    </div>
+  </div>
+  <% }) %>
+  <!-- 덧글 쓰기 Start -->
+  <form action="/comment" method="post" id="commentWrite" class="form-inline">
+    <div class="row comment">
+      <div class="col-xs-10 commentWrite">
+        <div style="padding: 0;">
+          <input type="hidden" value="<%= boardItem.id %>" name="boardId">
+          <input class="form-control dataCmtWriter" type="text" name="writer" placeholder="이름">
+        </div>
+        <div>
+          <textarea class="form-control" rows="3" style="width:100%;" name="content" placeholder="코멘트 내용"></textarea>
+        </div>
+      </div>
+      <div class="col-xs-2 commentWriteBtn">
+        <input type="submit" class="btn btn-primary" value="덧글 등록"> 
+      </div>
+    </div>
+  </form>
+  <!-- 덧글 쓰기 End -->
+  <hr class="writeHr">
+  <div class="readNav">
+    <a href="../write"><input type="button" class="btn btn-default" value="글작성"></a>
+    <a href="../"><input type="button" class="btn btn-default" value="목록"></a>
+  </div>
+  <!-- 코멘트 End -->
+</div>
+<%- include('footer'); %>
